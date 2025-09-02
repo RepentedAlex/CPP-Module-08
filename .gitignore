@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+tags
+.clangd
+.cache_exists
+easyfind
+span
+mutated_abomination
