@@ -103,7 +103,6 @@ re: fclean all
 		abs_dir=$$(realpath $$dir) ; \
 		echo "    - '-I$$abs_dir'" >> .clangd ; \
 	done
-	@echo "    [-xc++]" >> .clangd
 	@echo "$(OK_COLOR)[.clangd generated]$(NO_COLOR)"
 
 tags:

@@ -24,16 +24,17 @@ public:
 	/// @brief Destructor.
 	~Span();
 
-	/// @brief
-	/// @param value
+	/// @brief Adds a number to container_.
+	/// @param value The value to add to the container.
 	void	addNumber(int value);
 
+	/// @brief
 	void	addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
-	/// @brief
+	/// @brief Finds the longest span between two values inside container_.
 	int		longestSpan() const;
 
-	/// @brief
+	/// @brief Finds the shortest span between two values inside container_.
 	int		shortestSpan() const;
 
 	/// @brief Assignment operator overload.
