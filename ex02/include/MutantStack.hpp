@@ -23,14 +23,14 @@ public:
 	typedef typename std::deque<T>::iterator		iterator;
 	typedef typename std::deque<T>::const_iterator	const_iterator;
 
-	iterator	begin();
-	iterator	end();
-	iterator	rbegin();
-	iterator	rend();
-	const_iterator	cbegin() const;
-	const_iterator	cend() const;
-	const_iterator	rcbegin() const;
-	const_iterator	rcend() const;
+	iterator	begin() { return (this->c.begin()); }
+	iterator	end() { return (this->c.end()); }
+	iterator	rbegin() { return (this->c.end()); }
+	iterator	rend() { return (this->c.begin()); }
+	const_iterator	cbegin() const { return (this->c.begin()); }
+	const_iterator	cend() const { return (this->c.end()); }
+	const_iterator	rcbegin() const { return (this->c.end()); }
+	const_iterator	rcend() const { return (this->c.begin()); }
 private:
 };
 
