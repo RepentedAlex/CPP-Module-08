@@ -5,33 +5,34 @@
 
 #include <stack>
 
-template <typename T>
-class	MutantStack : public std::stack< T > {
+/// GERER DIFFERENT CONTAINER TYPES
+template <typename T, class C>
+class	MutantStack : public std::stack< T, C > {
 public:
 	/// @brief Default constructor.
 	MutantStack<T>() {}
 
 	/// @brief Copy constructor.
 	/// @param original The MutantStack object we want to copy from.
-	MutantStack<T>(const MutantStack<T>& original) { *this = original; }
+	MutantStack<T>(const MutantStack<T, C>& original) { *this = original; }
 
 	/// @brief Destructor.
-	~MutantStack<T>() {}
+	~MutantStack<T, C>() {}
 
 	/// @brief Assignment operator overload.
 	/// @param original The MutantStack object we want to assign from.
 	/// @return A reference to the assigned MutantStack object.
-	MutantStack<T>&	operator=(const MutantStack<T>& original) {
+	MutantStack<T, C>&	operator=(const MutantStack<T, C>& original) {
 		if (this != &original) {
 			std::stack<T>::operator=(original);
 		}
         return (*this);
 	}
 
-	typedef typename std::stack<T>::container_type::iterator            iterator;
-	typedef typename std::stack<T>::container_type::const_iterator      const_iterator;
-	typedef typename std::stack<T>::container_type::reverse_iterator	reverse_iterator;
-	typedef typename std::stack<T>::container_type::const_iterator      const_reverse_iterator;
+	typedef typename std::stack<T, C>::container_type::iterator            iterator;
+	typedef typename std::stack<T, C>::container_type::const_iterator      const_iterator;
+	typedef typename std::stack<T, C>::container_type::reverse_iterator	reverse_iterator;
+	typedef typename std::stack<T, C>::container_type::const_iterator      const_reverse_iterator;
 
 	/// @brief Function to retrieve the beginning of the stack.
 	/// @return An iterator.

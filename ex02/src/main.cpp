@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <vector>
 
 #include "ansi.h"
 
@@ -8,13 +9,13 @@
 int main() {
 	PRINT_SECTION("Subject's main");
 	{
-		MutantStack<int> mstack;
+		MutantStack<int, std::deque<int> > mstack;
 		PRINT_TEST("Populating MutantStack object");
 		{
 			mstack.push(5);
 			mstack.push(17);
 
-			for (MutantStack<int>::reverse_iterator it = mstack.rbegin() ; it != mstack.rend() ; it++) {
+			for (MutantStack<int, std::deque<int> >::reverse_iterator it = mstack.rbegin() ; it != mstack.rend() ; it++) {
 				std::cout << '[' << *it << ']';
 				std::cout << std::endl;
 			}
@@ -37,8 +38,8 @@ int main() {
 		}
 		PRINT_TEST("Displaying each element of the stack");
 		{
-			MutantStack<int>::iterator it = mstack.begin();
-			MutantStack<int>::iterator ite = mstack.end();
+			MutantStack<int, std::deque<int> >::iterator it = mstack.begin();
+			MutantStack<int, std::deque<int> >::iterator ite = mstack.end();
 			++it;
 			--it;
 			while (it != ite) {
@@ -46,6 +47,48 @@ int main() {
 				++it;
 			}
 			std::stack<int> s(mstack);
+		}
+	}
+	PRINT_SECTION("Subject's main but with a std::deque as container_type");
+	{
+		MutantStack<int, std::vector<int> > mstack;
+		PRINT_TEST("Populating MutantStack object");
+		{
+			mstack.push(5);
+			mstack.push(17);
+
+			for (MutantStack<int, std::vector<int> >::reverse_iterator it = mstack.rbegin() ; it != mstack.rend() ; it++) {
+				std::cout << '[' << *it << ']';
+				std::cout << std::endl;
+			}
+		}
+		PRINT_TEST("Displaying MutantStack's top element");
+		{
+			std::cout << mstack.top() << std::endl;
+		}
+		PRINT_TEST("Displaying MutantStack's size after popping one element");
+		{
+			mstack.pop();
+			std::cout << mstack.size() << std::endl;
+		}
+		PRINT_TEST("Pushing elements into the MutantStack");
+		{
+			mstack.push(3);
+			mstack.push(5);
+			mstack.push(737);
+			mstack.push(0);
+		}
+		PRINT_TEST("Displaying each element of the stack");
+		{
+			MutantStack<int, std::vector<int> >::iterator it = mstack.begin();
+			MutantStack<int, std::vector<int> >::iterator ite = mstack.end();
+			++it;
+			--it;
+			while (it != ite) {
+				std::cout << *it << std::endl;	// I find this to be pretty dumb since it'll print the stack in the wrong order
+				++it;
+			}
+			std::stack<int, std::vector<int> > s(mstack);
 		}
 	}
 	PRINT_SECTION("Now, the same but with a std::list, subject specifies that it should behave the same");
