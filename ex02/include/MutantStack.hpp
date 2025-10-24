@@ -3,35 +3,67 @@
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
-#include <deque>
 #include <stack>
 
-/// @tparam T
 template <typename T>
-/// @class MutantStack
-class	MutantStack : public std::stack< T, std::deque<T> > {
+class	MutantStack : public std::stack< T > {
 public:
+	/// @brief Default constructor.
 	MutantStack<T>() {}
+
+	/// @brief Copy constructor.
+	/// @param original The MutantStack object we want to copy from.
 	MutantStack<T>(const MutantStack<T>& original) { *this = original; }
+
+	/// @brief Destructor.
 	~MutantStack<T>() {}
+
+	/// @brief Assignment operator overload.
+	/// @param original The MutantStack object we want to assign from.
+	/// @return A reference to the assigned MutantStack object.
 	MutantStack<T>&	operator=(const MutantStack<T>& original) {
 		if (this != &original) {
-		std::stack<T>::operator=(original);
+			std::stack<T>::operator=(original);
 		}
+        return (*this);
 	}
 
-	typedef typename std::deque<T>::iterator		iterator;
-	typedef typename std::deque<T>::const_iterator	const_iterator;
+	typedef typename std::stack<T>::container_type::iterator            iterator;
+	typedef typename std::stack<T>::container_type::const_iterator      const_iterator;
+	typedef typename std::stack<T>::container_type::reverse_iterator	reverse_iterator;
+	typedef typename std::stack<T>::container_type::const_iterator      const_reverse_iterator;
 
-	iterator	begin() { return (this->c.begin()); }
-	iterator	end() { return (this->c.end()); }
-	iterator	rbegin() { return (this->c.end()); }
-	iterator	rend() { return (this->c.begin()); }
-	const_iterator	cbegin() const { return (this->c.begin()); }
-	const_iterator	cend() const { return (this->c.end()); }
-	const_iterator	rcbegin() const { return (this->c.end()); }
-	const_iterator	rcend() const { return (this->c.begin()); }
-private:
+	/// @brief Function to retrieve the beginning of the stack.
+	/// @return An iterator.
+	iterator				begin() { return (this->c.begin()); }
+
+	/// @brief Function to retrieve the end of the stack.
+	/// @return An iterator.
+	iterator				end() { return (this->c.end()); }
+
+	/// @brief Function to retrieve the beginning of the stack in reverse order.
+	/// @return A reverse iterator.
+	reverse_iterator		rbegin() { return (this->c.rbegin()); }
+
+	/// @brief Function to retrieve the end of the stack in reverse order.
+	/// @return A reverse iterator.
+	reverse_iterator		rend() { return (this->c.rend()); }
+
+	/// @brief Function to retrieve the beginning of the stack.
+	/// @return An iterator.
+	const_iterator			cbegin() const { return (this->c.begin()); }
+
+	/// @brief Function to retrieve the end of the stack.
+	/// @return An iterator.
+	const_iterator			cend() const { return (this->c.end()); }
+
+	/// @brief Function to retrieve the beginning of the stack in reverse order.
+	/// @return A reverse iterator.
+	const_reverse_iterator	rcbegin() const { return (this->c.rbegin()); }
+
+	/// @brief Function to retrieve the end of the stack in reverse order.
+	/// @return A reverse iterator.
+	const_reverse_iterator	rcend() const { return (this->c.rend()); }
 };
 
 #endif // !MUTANTSTACK_HPP
