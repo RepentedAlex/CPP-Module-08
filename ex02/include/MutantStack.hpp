@@ -5,8 +5,8 @@
 
 #include <stack>
 
-/// GERER DIFFERENT CONTAINER TYPES
-template <typename T, class C>
+/// T to hold several variable types ; C to be able to use std::deque, std::list or std::vector
+template <typename T, class C = std::deque<T> >
 class	MutantStack : public std::stack< T, C > {
 public:
 	/// @brief Default constructor.
@@ -29,10 +29,10 @@ public:
         return (*this);
 	}
 
-	typedef typename std::stack<T, C>::container_type::iterator            iterator;
-	typedef typename std::stack<T, C>::container_type::const_iterator      const_iterator;
-	typedef typename std::stack<T, C>::container_type::reverse_iterator	reverse_iterator;
-	typedef typename std::stack<T, C>::container_type::const_iterator      const_reverse_iterator;
+	typedef typename std::stack<T, C>::container_type::iterator						iterator;
+	typedef typename std::stack<T, C>::container_type::const_iterator				const_iterator;
+	typedef typename std::stack<T, C>::container_type::reverse_iterator				reverse_iterator;
+	typedef typename std::stack<T, C>::container_type::const_reverse_iterator		const_reverse_iterator;
 
 	/// @brief Function to retrieve the beginning of the stack.
 	/// @return An iterator.
