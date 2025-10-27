@@ -10,7 +10,7 @@ template <typename T, class C = std::deque<T> >
 class	MutantStack : public std::stack< T, C > {
 public:
 	/// @brief Default constructor.
-	MutantStack<T>() {}
+	MutantStack<T, C>() {}
 
 	/// @brief Copy constructor.
 	/// @param original The MutantStack object we want to copy from.
